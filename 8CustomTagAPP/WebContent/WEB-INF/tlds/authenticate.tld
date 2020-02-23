@@ -1,0 +1,22 @@
+<taglib>
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>3.0</jsp-version>
+   <short-name>Authenticate User</short-name>
+   <uri>/authenticate</uri>
+   
+   <tag>
+      <name>authenticate</name>
+      <tag-class>com.elegant.AuthenticateUser</tag-class>
+      <body-content>empty</body-content>
+      <attribute>
+        <name>username</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <name>password</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+   </tag>
+</taglib>
