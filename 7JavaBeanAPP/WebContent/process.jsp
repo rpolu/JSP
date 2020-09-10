@@ -1,6 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="emp" class="com.elegant.Employee" />
-<jsp:setProperty property="*" name="emp" />
+<jsp:useBean id="emp" class="com.elegant.Employee"/>
+
+<jsp:setProperty property="name" name="emp" />
+<jsp:setProperty property="phone" name="emp" />
+<jsp:setProperty property="email" name="emp" />
 <!DOCTYPE html>
 <html>
 <body>

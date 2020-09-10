@@ -26,5 +26,5 @@ try {
 
 }
 %>
-<%@ include file="success.jsp"%>
+<%@ include file="success.jsp"%> <!--  By directive tag -->
 

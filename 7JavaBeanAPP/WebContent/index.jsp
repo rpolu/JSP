@@ -12,6 +12,7 @@
             Email : <input type="text" name="email"><br><br>
 
             <input type="submit" value="Save">  
+        </form>
 
 </body> 
 </html>  
