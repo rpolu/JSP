@@ -1,10 +1,12 @@
 package com.elegnat.school.dao.impl;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.elegnat.school.dao.SchoolDao;
 import com.elegnat.school.model.StudentModel;
 import com.elegnat.school.util.ConnectionsUtils;
@@ -14,9 +16,34 @@ public class SchoolDaoImpl implements SchoolDao {
 	private static final String LOGIN_STUDENT = "SELECT * FROM  SCHOOL_ADMIN WHERE USERNAME = ?  PASSWORD= ?";
 	private static final String GET_STUDENT = "SELECT * FROM  SCHOOL_ADMIN WHERE USERNAME = ?";
 	private static final String GET_STUDENTS = "SELECT * FROM  SCHOOL_ADMIN";
+	private static final String INSERT_STUDENT = "INSERT INTO SCHOOL_ADMIN VALUES(?,?,?,?,?,?,?,?,?) ";
+	private static final String UPDATE_STUDENT = "UPDATE SCHOOL_ADMIN SET PHNO = ? AND PASSWORD = ?  WHERE USERNAME = ?";
 
 	public void saveStudent(StudentModel studentModel) {
-
+		Connection connection = ConnectionsUtils.getConnection();
+		PreparedStatement pst = null;
+		try {
+			pst = connection.prepareStatement(INSERT_STUDENT);
+			pst.setString(1, studentModel.getRollNum());
+			pst.setString(2, studentModel.getFirstName());
+			pst.setString(3, studentModel.getLastName());
+			pst.setString(4, studentModel.getEmail());
+			pst.setString(5, studentModel.getPhno());
+			pst.setString(6, studentModel.getUserName());
+			pst.setString(7, studentModel.getPassword());
+			pst.setString(8, studentModel.getGender());
+			pst.setString(9, studentModel.getKnownLanguages());
+			pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			ConnectionsUtils.closeConnection();
+		}
 	}
 
 	public boolean loginStudent(String userName, String password) {
@@ -113,7 +140,24 @@ public class SchoolDaoImpl implements SchoolDao {
 	}
 
 	public void updateStudent(StudentModel studentModel) {
-
+		Connection connection = ConnectionsUtils.getConnection();
+		PreparedStatement pst = null;
+		try {
+			pst = connection.prepareStatement(UPDATE_STUDENT);
+			pst.setString(1, studentModel.getPhno());
+			pst.setString(2, studentModel.getPassword());
+			pst.setString(3, studentModel.getUserName());
+			pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			ConnectionsUtils.closeConnection();
+		}
 	}
 
 	public void deleteStudent(String userName) {
