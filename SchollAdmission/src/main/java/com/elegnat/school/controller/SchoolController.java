@@ -22,7 +22,7 @@ public class SchoolController extends HttpServlet {
 		SchoolService schoolService = new SchoolServiceImpl();
 		schoolService.saveStudent(studentModel);
 		req.setAttribute("message", "User Registation success. Please login here");
-		req.getRequestDispatcher("/WEB-INF/pages/studentlogin.jsp").forward(req, resp);
+		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}
 
 	private StudentModel getDataModel(HttpServletRequest req) {
@@ -34,7 +34,7 @@ public class SchoolController extends HttpServlet {
 		String phno = req.getParameter("phno");
 		String userName = req.getParameter("userName");
 		String password = req.getParameter("password");
-		String gender = req.getParameter("password");
+		String gender = req.getParameter("gender");
 		String knownLanguages = req.getParameter("knownLanguages");
         // Create the Model class object
 		StudentModel studentModel = new StudentModel();

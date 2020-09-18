@@ -13,11 +13,11 @@ import com.elegnat.school.util.ConnectionsUtils;
 
 public class SchoolDaoImpl implements SchoolDao {
 	private static final String DELETE_STUDENT = "DELETE FROM  SCHOOL_ADMIN WHERE USERNAME = ?";
-	private static final String LOGIN_STUDENT = "SELECT * FROM  SCHOOL_ADMIN WHERE USERNAME = ?  PASSWORD= ?";
+	private static final String LOGIN_STUDENT = "SELECT * FROM  SCHOOL_ADMIN WHERE USERNAME = ? AND PASSWORD= ?";
 	private static final String GET_STUDENT = "SELECT * FROM  SCHOOL_ADMIN WHERE USERNAME = ?";
 	private static final String GET_STUDENTS = "SELECT * FROM  SCHOOL_ADMIN";
 	private static final String INSERT_STUDENT = "INSERT INTO SCHOOL_ADMIN VALUES(?,?,?,?,?,?,?,?,?) ";
-	private static final String UPDATE_STUDENT = "UPDATE SCHOOL_ADMIN SET PHNO = ? AND PASSWORD = ?  WHERE USERNAME = ?";
+	private static final String UPDATE_STUDENT = "UPDATE SCHOOL_ADMIN SET PHNO = ? , PASSWORD = ?  WHERE USERNAME = ?";
 
 	public void saveStudent(StudentModel studentModel) {
 		Connection connection = ConnectionsUtils.getConnection();
@@ -88,6 +88,8 @@ public class SchoolDaoImpl implements SchoolDao {
 				studentModel.setFirstName(rs.getString("FIRSTNAME"));
 				studentModel.setLastName(rs.getString("LASTNAME"));
 				studentModel.setEmail(rs.getString("EMAIL"));
+				studentModel.setUserName(userName);
+				studentModel.setPassword(rs.getString("PASSWORD"));
 				studentModel.setPhno(rs.getString("PHNO"));
 				studentModel.setGender(rs.getString("GENDER"));
 				studentModel.setKnownLanguages(rs.getString("KNOWNLANGUAGES"));
@@ -121,6 +123,7 @@ public class SchoolDaoImpl implements SchoolDao {
 				studentModel.setLastName(rs.getString("LASTNAME"));
 				studentModel.setEmail(rs.getString("EMAIL"));
 				studentModel.setPhno(rs.getString("PHNO"));
+				studentModel.setUserName(rs.getString("USERNAME"));
 				studentModel.setGender(rs.getString("GENDER"));
 				studentModel.setKnownLanguages(rs.getString("KNOWNLANGUAGES"));
 				studentModels.add(studentModel);
